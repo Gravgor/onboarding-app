@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { MountainIcon, ClipboardCheckIcon, FileTextIcon, BarChartIcon } from 'lucide-react'
+import { MountainIcon } from 'lucide-react'
 import { CTA, FAQ, Features, Hero, HowItWorks, PricingPlans } from '@/components/landing-page'
 
 export default function LandingPage() {

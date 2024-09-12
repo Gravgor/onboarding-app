@@ -35,7 +35,7 @@ export default async function OnboardingsPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {onboardings.map((onboarding: any) => (
+                {onboardings.map((onboarding) => (
                   <TableRow key={onboarding.id}>
                     <TableCell className="font-medium">{onboarding.user.name}</TableCell>
                     <TableCell>{onboarding.user.role}</TableCell>

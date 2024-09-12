@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { updateTask } from "@/lib/actions"
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function TaskActions({ task }: { task: any }) {
   const [isUpdating, setIsUpdating] = useState(false)
 

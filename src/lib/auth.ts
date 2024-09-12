@@ -1,4 +1,4 @@
-import { NextAuthOptions } from "next-auth"
+import { getServerSession, NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
@@ -62,3 +62,5 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login"
   }
 }
+
+export const getServerAuthSession = () => getServerSession(authOptions);

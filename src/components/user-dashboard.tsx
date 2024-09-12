@@ -1,6 +1,6 @@
 "use client"
 import { motion } from 'framer-motion';
-import { FiCheckCircle, FiClock, FiFileText, FiUser, FiBriefcase, FiCalendar, FiList, FiFile } from 'react-icons/fi';
+import { FiBriefcase, FiCalendar, FiList, FiFile } from 'react-icons/fi';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -108,7 +108,7 @@ export function UserDashboard({
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{tasksCompleted}/{tasksTotal}</div>
             <Progress value={(tasksCompleted / tasksTotal) * 100} className="mb-2" />
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              You've completed {tasksCompleted} out of {tasksTotal} tasks.
+              You`&apos;`ve completed {tasksCompleted} out of {tasksTotal} tasks.
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-4">
               <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-white">
@@ -126,7 +126,7 @@ export function UserDashboard({
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{documentsCompleted}/{documentsTotal}</div>
             <Progress value={(documentsCompleted / documentsTotal) * 100} className="mb-2" />
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              You've completed {documentsCompleted} out of {documentsTotal} required documents.
+              You`&apos;`ve completed {documentsCompleted} out of {documentsTotal} required documents.
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-4">
               <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-white">

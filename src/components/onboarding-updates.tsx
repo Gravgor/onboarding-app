@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function OnboardingUpdates({ onboardingId, onUpdate }: { onboardingId: string, onUpdate: (data: any) => void }) {
   const [lastUpdate, setLastUpdate] = useState<string | null>(null)
 

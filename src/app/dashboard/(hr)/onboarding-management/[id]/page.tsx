@@ -25,6 +25,7 @@ const templateData = {
   ],
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function EditOnboardingTemplatePage({ params }: { params: { id: string } }) {
   return (
     <div className="space-y-6">

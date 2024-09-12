@@ -1,11 +1,10 @@
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth"
+import {  getServerAuthSession } from "@/lib/auth"
 import { redirect } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
 
-async function getUserTasks(userId: string) {
+async function getUserTasks() {
   // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1000))
   return [
@@ -30,15 +29,14 @@ async function getHRTasks() {
 }
 
 export default async function TasksPage() {
-  /*const session = await getServerSession(authOptions)
+  const session = await getServerAuthSession()
   
   if (!session) {
     redirect("/login")
-  }*/
+  }
 
-  //@ts-ignore
-  const isHR = true
-  const tasks = isHR ? await getHRTasks() : await getUserTasks('')
+  const isHR = session.user.role === "HR"
+  const tasks = isHR ? await getHRTasks() : await getUserTasks()
 
   return (
     <Card>

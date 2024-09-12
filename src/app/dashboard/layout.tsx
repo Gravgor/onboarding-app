@@ -1,5 +1,3 @@
-import Link from 'next/link'
-import { MountainIcon, Users2Icon, FileTextIcon, BarChartIcon, SettingsIcon } from 'lucide-react'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from '@/lib/auth'
 import { redirect } from 'next/navigation'
@@ -27,7 +25,7 @@ export default async function DashboardLayout({
         <header className="">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-            <Navigation isHR={true} />
+            <Navigation isHR={isHR} />
           </div>
         </header>
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">

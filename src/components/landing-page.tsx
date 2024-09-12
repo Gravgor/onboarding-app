@@ -14,9 +14,7 @@ import {
   ClipboardCheckIcon,
   FileTextIcon,
   BarChartIcon,
-  ChevronDown,
-  Briefcase,
-  CheckCircle
+  ChevronDown
 } from 'lucide-react'
 import {
   Collapsible,

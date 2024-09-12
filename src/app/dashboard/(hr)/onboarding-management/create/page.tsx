@@ -8,7 +8,6 @@ import { AnimatedCollapsible } from "@/components/ui/animated-collapsible";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Spinner } from "@/components/ui/spinner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -22,7 +21,6 @@ export default function CreateOnboardingTemplatePage() {
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const session = useSession();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
