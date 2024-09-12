@@ -1,0 +1,122 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         String      @id @default(cuid())
+  name       String
+  email      String      @unique
+  password   String
+  role       String
+  companyId  String
+  company    Company     @relation(fields: [companyId], references: [id])
+  onboarding Onboarding?
+}
+
+model Company {
+  id                 String               @id @default(cuid())
+  name               String
+  plan               String
+  users              User[]
+  onboardings        Onboarding[]
+  OnboardingTemplate OnboardingTemplate[]
+}
+
+model Onboarding {
+  id              String           @id @default(cuid())
+  user            User             @relation(fields: [userId], references: [id])
+  userId          String           @unique
+  company         Company          @relation(fields: [companyId], references: [id])
+  companyId       String
+  startDate       DateTime
+  endDate         DateTime?
+  status          String           @default("ACTIVE")
+  progress        Int              @default(0)
+  durationInDays  Int?
+  tasks           Task[]
+  documents       Document[]
+  complianceItems ComplianceItem[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model Task {
+  id           String     @id @default(cuid())
+  title        String
+  completed    Boolean    @default(false)
+  priority     String
+  onboarding   Onboarding @relation(fields: [onboardingId], references: [id])
+  onboardingId String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Document {
+  id           String     @id @default(cuid())
+  title        String
+  status       String
+  dueDate      DateTime
+  onboarding   Onboarding @relation(fields: [onboardingId], references: [id])
+  onboardingId String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model ComplianceItem {
+  id           String     @id @default(cuid())
+  name         String
+  progress     Int        @default(0)
+  onboarding   Onboarding @relation(fields: [onboardingId], references: [id])
+  onboardingId String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model OnboardingTemplate {
+  id              String                   @id @default(cuid())
+  name            String
+  description     String
+  company         Company                  @relation(fields: [companyId], references: [id])
+  companyId       String
+  tasks           TemplateTask[]
+  documents       TemplateDocument[]
+  complianceItems TemplateComplianceItem[]
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+}
+
+model TemplateTask {
+  id         String             @id @default(cuid())
+  title      String
+  priority   String
+  category   String
+  template   OnboardingTemplate @relation(fields: [templateId], references: [id])
+  templateId String
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+}
+
+model TemplateDocument {
+  id         String             @id @default(cuid())
+  title      String
+  required   Boolean
+  template   OnboardingTemplate @relation(fields: [templateId], references: [id])
+  templateId String
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+}
+
+model TemplateComplianceItem {
+  id         String             @id @default(cuid())
+  name       String
+  type       String
+  template   OnboardingTemplate @relation(fields: [templateId], references: [id])
+  templateId String
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+}
