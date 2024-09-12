@@ -18,6 +18,18 @@ model User {
   onboarding Onboarding?
 }
 
+model Invitation {
+  id        String   @id @default(cuid())
+  email     String
+  companyId String
+  role      String
+  company   Company  @relation(fields: [companyId], references: [id])
+  token     String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  updatedAt DateTime @updatedAt
+}
+
 model Company {
   id                 String               @id @default(cuid())
   name               String
@@ -25,6 +37,7 @@ model Company {
   users              User[]
   onboardings        Onboarding[]
   OnboardingTemplate OnboardingTemplate[]
+  Invitation         Invitation[]
 }
 
 model Onboarding {

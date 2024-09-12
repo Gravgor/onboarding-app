@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { createOnboardingTemplate } from "@/lib/actions";
+import { createOnboardingTemplate } from "@/lib/actions/actions";
 
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);

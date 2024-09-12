@@ -16,7 +16,7 @@ export default async function DashboardLayout({
     redirect("/login")
   }
 
-  const isHR = session.user?.role === 'hr'
+  const isHR = session.user?.role === 'hr' || session.user?.role === 'admin' || session.user?.role === 'manager'
 
   return (
     <div className="flex h-screen bg-gray-100">

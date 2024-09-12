@@ -106,11 +106,12 @@ export default async function Dashboard() {
     redirect("/login")
 }
 
-  const isHR = session.user.role === 'hr'
+  const isHR = session.user.role === 'hr' || session.user.role === 'admin' || session.user.role === 'manager'
+  const companyId = session.user.companyId
   
   if (isHR) {
     const hrData = await getHRData(session.user.companyId)
-    return <HRDashboard data={hrData} companyName={hrData.companyName || ''} />
+    return <HRDashboard data={hrData} companyName={hrData.companyName || ''} companyId={companyId}/>
   } else {
     const userData = await getUserData(session.user.id)
     return <UserDashboard 

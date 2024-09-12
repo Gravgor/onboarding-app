@@ -1,4 +1,4 @@
-import { getOnboardingDetails } from "@/lib/actions";
+import { getOnboardingDetails } from "@/lib/actions/actions";
 import { getServerAuthSession } from "@/lib/auth";
 import { NextResponse } from "next/server";
 

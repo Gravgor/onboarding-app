@@ -11,7 +11,7 @@ export default function HRDashboardDemo() {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">HR Dashboard Demo</h2>
-      <HRDashboard data={demoData} companyName="Demo Company" />
+      <HRDashboard data={demoData} companyName="Demo Company" companyId="demo" />
     </div>
   )
 }

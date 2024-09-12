@@ -7,7 +7,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getOnboardingTemplates } from "@/lib/actions";
+import { getOnboardingTemplates } from "@/lib/actions/actions";
 
 export default async function OnboardingManagementPage() {
   const session = await getServerSession(authOptions);

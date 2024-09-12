@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { getOnboardings } from "@/lib/actions";
+import { getOnboardings } from "@/lib/actions/actions";
 import {  getServerAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
