@@ -8,6 +8,7 @@ export default function LandingPage() {
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link className="flex items-center justify-center" href="#">
           <MountainIcon className="h-6 w-6" />
+          <span className="text-xl font-bold ml-2">OnBoard Ease</span>
           <span className="sr-only">OnBoard Ease</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
