@@ -4,12 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getOnboardings } from "@/lib/actions";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import {  getServerAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export default async function OnboardingsPage() {
-    const session = await getServerSession(authOptions)
+    const session = await getServerAuthSession()
     if (!session || !session.user.companyId) {
       redirect("/login")
     }
