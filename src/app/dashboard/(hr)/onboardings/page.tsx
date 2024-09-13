@@ -16,7 +16,7 @@ export default async function OnboardingsPage() {
   
     return (
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold">Active Onboardings</h2>
+        <h2 className="text-3xl font-bold text-black">Active Onboardings</h2>
         <Card>
           <CardHeader>
             <CardTitle>Ongoing Onboarding Processes</CardTitle>

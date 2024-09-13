@@ -1,25 +1,50 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { AnimatedCollapsible } from "@/components/ui/animated-collapsible";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Spinner } from "@/components/ui/spinner";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function CreateOnboardingTemplatePage() {
-    const [templateName, setTemplateName] = useState("");
-    const [description, setDescription] = useState("");
-    const [tasks, setTasks] = useState<Array<{ id: number; title: string; category: string; priority: string }>>([]);
-    const [documents, setDocuments] = useState<Array<{ id: number; title: string; required: boolean }>>([]);
-    const [complianceItems, setComplianceItems] = useState<Array<{ id: number; title: string; type: string }>>([]);
-    const [error, setError] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
+  const [templateName, setTemplateName] = useState("");
+  const [description, setDescription] = useState("");
+  const [tasks, setTasks] = useState<
+    Array<{ id: number; title: string; category: string; priority: string }>
+  >([]);
+  const [documents, setDocuments] = useState<
+    Array<{ id: number; title: string; required: boolean }>
+  >([]);
+  const [complianceItems, setComplianceItems] = useState<
+    Array<{ id: number; title: string; type: string }>
+  >([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,10 +52,10 @@ export default function CreateOnboardingTemplatePage() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/hr/create-template', {
-        method: 'POST',
+      const response = await fetch("/api/hr/create-template", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: templateName,
@@ -43,52 +68,71 @@ export default function CreateOnboardingTemplatePage() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to create template');
+        throw new Error(errorData.message || "Failed to create template");
       }
 
       const newTemplate = await response.json();
-      console.log('New template created:', newTemplate);
+      console.log("New template created:", newTemplate);
       router.push("/dashboard/onboarding-management");
     } catch (error) {
       console.error("Error creating template:", error);
-      setError(error instanceof Error ? error.message : 'An unexpected error occurred');
+      setError(
+        error instanceof Error ? error.message : "An unexpected error occurred"
+      );
     } finally {
       setIsLoading(false);
     }
   };
   const addTask = () => {
-    setTasks((prevTasks) => [...prevTasks, { id: Date.now(), title: "", category: "", priority: "medium" }]);
+    setTasks((prevTasks) => [
+      ...prevTasks,
+      { id: Date.now(), title: "", category: "", priority: "medium" },
+    ]);
   };
 
   const addDocument = () => {
-    setDocuments((prevDocuments) => [...prevDocuments, { id: Date.now(), title: "", required: false }]);
+    setDocuments((prevDocuments) => [
+      ...prevDocuments,
+      { id: Date.now(), title: "", required: false },
+    ]);
   };
 
   const addComplianceItem = () => {
-    setComplianceItems([...complianceItems, { id: Date.now(), title: "", type: "" }]);
+    setComplianceItems([
+      ...complianceItems,
+      { id: Date.now(), title: "", type: "" },
+    ]);
   };
 
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-gray-900">Create New Onboarding Template</h2>
+      <h2 className="text-3xl font-bold text-gray-900">
+        Create New Onboarding Template
+      </h2>
 
-      
       {error && (
         <Alert variant="destructive">
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
-      
+
       <form onSubmit={handleSubmit} className="space-y-6">
         <Card>
           <CardHeader>
             <CardTitle>Template Details</CardTitle>
-            <CardDescription>Enter the details for your new onboarding template</CardDescription>
+            <CardDescription>
+              Enter the details for your new onboarding template
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label htmlFor="templateName" className="block text-sm font-medium text-gray-700">Template Name</label>
+              <label
+                htmlFor="templateName"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Template Name
+              </label>
               <Input
                 id="templateName"
                 value={templateName}
@@ -98,7 +142,12 @@ export default function CreateOnboardingTemplatePage() {
               />
             </div>
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Description
+              </label>
               <Textarea
                 id="description"
                 value={description}
@@ -111,73 +160,85 @@ export default function CreateOnboardingTemplatePage() {
 
         <AnimatedCollapsible title="Tasks">
           <Table>
-         
-          <TableHeader>
-  <TableRow>
-    <TableHead>Task</TableHead>
-    <TableHead>Category</TableHead>
-    <TableHead>Priority</TableHead>
-    <TableHead>Actions</TableHead>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  {tasks.map((task, index) => (
-    <TableRow key={task.id}>
-      <TableCell>
-        <Input
-          className="text-black"
-          value={task.title}
-          onChange={(e) => {
-            const newTasks = [...tasks];
-            newTasks[index].title = e.target.value;
-            setTasks(newTasks);
-          }}
-        />
-      </TableCell>
-      <TableCell>
-        <Input
-          className="text-black"
-          value={task.category}
-          onChange={(e) => {
-            const newTasks = [...tasks];
-            newTasks[index].category = e.target.value;
-            setTasks(newTasks);
-          }}
-        />
-      </TableCell>
-      <TableCell>
-  <Select
-    value={task.priority}
-    onValueChange={(value) => {
-      const newTasks = [...tasks];
-      newTasks[index].priority = value;
-      setTasks(newTasks);
-    }}
-  >
-    <SelectTrigger className="w-full">
-      <SelectValue className="text-gray-500" placeholder="Select priority" />
-    </SelectTrigger>
-    <SelectContent>
-      <SelectItem className="text-black" value="low">Low</SelectItem>
-      <SelectItem className="text-black" value="medium">Medium</SelectItem>
-      <SelectItem className="text-black" value="high">High</SelectItem>
-    </SelectContent>
-  </Select>
-</TableCell>
-      <TableCell>
-        <Button
-          type="button"
-          variant="destructive"
-          onClick={() => setTasks(tasks.filter((_, i) => i !== index))}
-        >
-          Remove
-        </Button>
-      </TableCell>
-    </TableRow>
-  ))}
+            <TableHeader>
+              <TableRow>
+                <TableHead>Task</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead>Priority</TableHead>
+                <TableHead>Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {tasks.map((task, index) => (
+                <TableRow key={task.id}>
+                  <TableCell>
+                    <Input
+                      className="text-black"
+                      value={task.title}
+                      onChange={(e) => {
+                        const newTasks = [...tasks];
+                        newTasks[index].title = e.target.value;
+                        setTasks(newTasks);
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Input
+                      className="text-black"
+                      value={task.category}
+                      onChange={(e) => {
+                        const newTasks = [...tasks];
+                        newTasks[index].category = e.target.value;
+                        setTasks(newTasks);
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Select
+                      value={task.priority}
+                      onValueChange={(value) => {
+                        const newTasks = [...tasks];
+                        newTasks[index].priority = value;
+                        setTasks(newTasks);
+                      }}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue
+                          className="text-gray-500"
+                          placeholder="Select priority"
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem className="text-black" value="low">
+                          Low
+                        </SelectItem>
+                        <SelectItem className="text-black" value="medium">
+                          Medium
+                        </SelectItem>
+                        <SelectItem className="text-black" value="high">
+                          High
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() =>
+                        setTasks(tasks.filter((_, i) => i !== index))
+                      }
+                    >
+                      Remove
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
-          <Button type="button" onClick={addTask} className="mt-4">Add Task</Button>
+          <Button type="button" onClick={addTask} className="mt-4 ml-2 mb-2">
+            Add Task
+          </Button>
         </AnimatedCollapsible>
 
         <AnimatedCollapsible title="Documents">
@@ -194,6 +255,7 @@ export default function CreateOnboardingTemplatePage() {
                 <TableRow key={doc.id}>
                   <TableCell>
                     <Input
+                    className="text-black"
                       value={doc.title}
                       onChange={(e) => {
                         const newDocs = [...documents];
@@ -217,7 +279,9 @@ export default function CreateOnboardingTemplatePage() {
                     <Button
                       type="button"
                       variant="destructive"
-                      onClick={() => setDocuments(documents.filter((_, i) => i !== index))}
+                      onClick={() =>
+                        setDocuments(documents.filter((_, i) => i !== index))
+                      }
                     >
                       Remove
                     </Button>
@@ -226,7 +290,9 @@ export default function CreateOnboardingTemplatePage() {
               ))}
             </TableBody>
           </Table>
-          <Button type="button" onClick={addDocument} className="mt-4">Add Document</Button>
+          <Button type="button" onClick={addDocument} className="mt-4 ml-2 mb-2">
+            Add Document
+          </Button>
         </AnimatedCollapsible>
 
         <AnimatedCollapsible title="Compliance Items">
@@ -243,6 +309,7 @@ export default function CreateOnboardingTemplatePage() {
                 <TableRow key={item.id}>
                   <TableCell>
                     <Input
+                    className="text-black"
                       value={item.title}
                       onChange={(e) => {
                         const newItems = [...complianceItems];
@@ -265,7 +332,11 @@ export default function CreateOnboardingTemplatePage() {
                     <Button
                       type="button"
                       variant="destructive"
-                      onClick={() => setComplianceItems(complianceItems.filter((_, i) => i !== index))}
+                      onClick={() =>
+                        setComplianceItems(
+                          complianceItems.filter((_, i) => i !== index)
+                        )
+                      }
                     >
                       Remove
                     </Button>
@@ -274,11 +345,18 @@ export default function CreateOnboardingTemplatePage() {
               ))}
             </TableBody>
           </Table>
-          <Button type="button" onClick={addComplianceItem} className="mt-4">Add Compliance Item</Button>
+          <Button type="button" onClick={addComplianceItem} className="mt-4 ml-2 mb-2">
+            Add Compliance Item
+          </Button>
         </AnimatedCollapsible>
 
         <div className="mt-6 flex justify-end space-x-4">
-          <Button type="button" variant="outline" onClick={() => router.push("/dashboard/onboarding-management")} disabled={isLoading}>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.push("/dashboard/onboarding-management")}
+            disabled={isLoading}
+          >
             Cancel
           </Button>
           <Button type="submit" disabled={isLoading}>
@@ -288,7 +366,7 @@ export default function CreateOnboardingTemplatePage() {
                 Creating...
               </>
             ) : (
-              'Create Template'
+              "Create Template"
             )}
           </Button>
         </div>
