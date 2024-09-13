@@ -3,6 +3,8 @@ import { authOptions } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { Navigation } from '@/components/navigation'
 import { Providers } from '@/components/Providers'
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from "@vercel/analytics/react"
 
 export default async function DashboardLayout({
   children,
@@ -30,6 +32,8 @@ export default async function DashboardLayout({
         </header>
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           {children}
+          <SpeedInsights />
+          <Analytics />
         </div>
       </main>
       </Providers>

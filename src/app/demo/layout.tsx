@@ -1,4 +1,6 @@
 import { Inter } from 'next/font/google'
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +24,8 @@ export default function DemoLayout({
       <main>
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           {children}
+          <SpeedInsights />
+          <Analytics />
         </div>
       </main>
     </div>
