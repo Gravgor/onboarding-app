@@ -26,7 +26,7 @@ export async function acceptInvitation(
   try {
     await prisma.$transaction(async (prisma) => {
       // Create the user
-      const user = await prisma.user.create({
+       await prisma.user.create({
         data: {
           email: invitation.email,
           password: hashedPassword,

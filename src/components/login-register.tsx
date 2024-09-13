@@ -107,7 +107,7 @@ export const LoginRegisterInvite = () => {
       if (isLogin) {
         const result = await signIn("credentials", {
           redirect: false,
-          //@ts-expect-error
+          //@ts-expect-error we dont want to throw error for if user is accepting invitation
           email: data.email ?? invitationDetails?.email,
           password: data.password,
         });
@@ -244,7 +244,7 @@ export const LoginRegisterInvite = () => {
         >
           {invitationDetails && (
             <div className="text-center text-gray-300 mb-4">
-              <p>You've been invited to join {invitationDetails.company}</p>
+              <p>You`&apos;`ve been invited to join {invitationDetails.company}</p>
               <p>as a {invitationDetails.role}</p>
             </div>
           )}

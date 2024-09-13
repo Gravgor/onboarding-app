@@ -5,8 +5,7 @@ import {
   FiCheckCircle,
   FiClock,
   FiShield,
-  FiList,
-  FiSend,
+  FiList
 } from "react-icons/fi";
 import {
   Card,
@@ -17,7 +16,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState } from "react";
 import InviteEmployeeForm from "./invite-employee-form";
 const StatCard = ({
   title,
