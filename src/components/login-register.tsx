@@ -210,6 +210,7 @@ export const LoginRegisterInvite = () => {
               <input
                 type="email"
                 id="email"
+                placeholder="some@email.com"
                 {...loginForm.register("email")}
                 className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -261,6 +262,7 @@ export const LoginRegisterInvite = () => {
               </div>
               <input
                 type="text"
+                placeholder="John Doe"
                 id="name"
                 {...invitationForm.register("name")}
                 className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -286,6 +288,7 @@ export const LoginRegisterInvite = () => {
               <input
                 type="password"
                 id="password"
+                placeholder="Password"
                 {...invitationForm.register("password")}
                 className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -340,6 +343,7 @@ export const LoginRegisterInvite = () => {
             </div>
             <input
               type="email"
+              placeholder="some@mail.com"
               id="email"
               {...loginForm.register("email")}
               className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -365,6 +369,7 @@ export const LoginRegisterInvite = () => {
             <input
               type="password"
               id="password"
+              placeholder="Password"
               {...loginForm.register("password")}
               className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -415,6 +420,7 @@ export const LoginRegisterInvite = () => {
             </div>
             <input
               type="text"
+              placeholder="John Doe"
               id="name"
               {...registerForm.register("name")}
               className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -439,6 +445,7 @@ export const LoginRegisterInvite = () => {
             </div>
             <input
               type="email"
+              placeholder="some@mail.com"
               id="email"
               {...registerForm.register("email")}
               className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -463,6 +470,7 @@ export const LoginRegisterInvite = () => {
             </div>
             <input
               type="password"
+              placeholder="Password"
               id="password"
               {...registerForm.register("password")}
               className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -487,6 +495,7 @@ export const LoginRegisterInvite = () => {
             </div>
             <input
               type="text"
+              placeholder="Company Inc"
               id="companyName"
               {...registerForm.register("companyName")}
               className="block w-full pl-10 pr-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
