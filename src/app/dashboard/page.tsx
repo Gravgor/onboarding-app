@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth"
 import { HRDashboard } from "@/components/hr-dashboard"
 import { UserDashboard } from "@/components/user-dashboard"
 import { prisma } from "@/lib/prisma"
+import { Suspense } from "react"
+import Loading from "./loading"
 
 
 async function getUserData(userId: string) {
@@ -111,10 +113,16 @@ export default async function Dashboard() {
   
   if (isHR) {
     const hrData = await getHRData(session.user.companyId)
-    return <HRDashboard data={hrData} companyName={hrData.companyName || ''} companyId={companyId}/>
+    return (
+    <Suspense fallback={<Loading />}>
+    <HRDashboard data={hrData} companyName={hrData.companyName || ''} companyId={companyId}/>
+    </Suspense>
+    )
   } else {
     const userData = await getUserData(session.user.id)
-    return <UserDashboard 
+    return (
+    <Suspense fallback={<Loading />}>
+       <UserDashboard 
       name={userData.name}
       position={userData.position}
       startDate={userData.startDate.toISOString()}
@@ -124,6 +132,8 @@ export default async function Dashboard() {
       documentsCompleted={0}
       documentsTotal={0}
     />
+    </Suspense>
+    )
   }
 }
 

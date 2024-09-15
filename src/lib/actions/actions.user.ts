@@ -3,7 +3,14 @@ import {prisma} from "../prisma"
 
 export async function registerUser(name: string, email: string, password: string, companyName: string, plan: string) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    
+    /*const ifCompanyExists = await prisma.company.findUnique({
+      where: {
+        name: companyName,
+      },
+    });
+    if (ifCompanyExists) {
+      return { error: 'Company already exists' };
+    }*/
     const company = await prisma.company.create({
       data: {
         name: companyName,
